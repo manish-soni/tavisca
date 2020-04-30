@@ -1,18 +1,27 @@
+<!-- header section to display menu and heaading -->
 <header>
   <a href="#"><img src="./../assets/icons/menu.png" alt="menu"/></a>
   <h1>
     <span>cx</span>Loyalty
   </h1>
 </header>
-
+<!-- navigation section -->
 <nav>
   <a routerLink="/flight" routerLinkActive="active">
-    <img src="./../assets/icons/flight.png" alt="Flights"/>Flights</a>
-  <a routerLink="/flight" routerLinkActive="active">
-    <img src="./../assets/icons/hotel.png" alt="Hotels"/>Hotels</a>
-  <a routerLink="/flight" routerLinkActive="active">
-    <img src="./../assets/icons/trains.png" alt="Trains"/>Trains</a>
-  <a routerLink="/flight-details" routerLinkActive="active">
-    <img src="./../assets/icons/bus.png" alt="Buses"/>Buses</a>
+    <img src="./../assets/icons/flight.png" alt="Flights"/>
+    <span>Flights</span>
+    </a>
+  <a routerLink="/hotel" routerLinkActive="active">
+    <img src="./../assets/icons/hotel.png" alt="Hotels"/>
+    <span>Hotels</span>
+  </a>
+  <a routerLink="/trains" routerLinkActive="active">
+    <img src="./../assets/icons/trains.png" alt="Trains"/>
+    <span>Trains</span>
+  </a>
+  <a routerLink="/buses" routerLinkActive="active">
+    <img src="./../assets/icons/bus.png" alt="Buses"/>
+    <span>Buses</span>
+  </a>
 </nav>
 <router-outlet></router-outlet>

@@ -33,9 +33,14 @@ nav {
             width: 25px;
             margin-right: 5px;
         }
+        span {
+            display: inline-block;
+            vertical-align: super;
+        }
+    }
+    .active {
+        color: blue;
+        border-bottom: 1px solid blue;;
     }
 }
-.active {
-    color: blue;
-    border-bottom: 1px solid blue;;
-}
+
