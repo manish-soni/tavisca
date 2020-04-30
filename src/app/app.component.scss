@@ -1,0 +1,41 @@
+header {
+    background-color: blue;
+    color: #fff;
+    text-align: center;
+    a {
+        width: 25px;
+        float: left;
+        margin: 14px;
+        img {
+            width: 25px;
+            float: left; 
+        }
+    }
+    h1 {
+        margin-block-start: 0;
+        padding: 8px;
+        span {
+            color: cadetblue;
+        }
+    }
+}
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    a {
+        color: gray;
+        border-bottom: 1px solid gray;
+        text-decoration: none;
+        margin-right: 3px;
+        width: 24.1%;
+        text-align: center;
+        img {
+            width: 25px;
+            margin-right: 5px;
+        }
+    }
+}
+.active {
+    color: blue;
+    border-bottom: 1px solid blue;;
+}
