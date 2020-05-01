@@ -3,29 +3,72 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { Observable, throwError } from 'rxjs';
 import { FlightsService } from './../flights.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',
   styleUrls: ['./flight.component.scss']
 })
 export class FlightComponent implements OnInit {
-public flightNames = {};
+public flightNames = [];
 public flightForm;
-public classList = ['Business', 'Economy', 'First'];
-  constructor(private flightServ: FlightsService) { }
+public departureError: boolean = false;
+public destinationError: boolean = false;
+public travellersError: boolean = false;
+public travelclass = ['Business', 'Economy', 'First'];
+  constructor(private flightServ: FlightsService, private router: Router) { }
 
   ngOnInit(): void {
     this.flightForm = new FormGroup({
-      departure: new FormControl('')
+      departure: new FormControl(''),
+      destination: new FormControl(''),
+      departDate: new FormControl(''),
+      returnDate: new FormControl(''),
+      travellers: new FormControl(''),
+      travelClass: new FormControl('')
     });
 
     this.flightServ.getFlightNames().subscribe(data => {
       this.flightNames = data['airports'];
-      console.log(this.flightNames);
+     // console.log(this.flightNames);
     })
+    const editForm = sessionStorage.getItem('flightInfo')? JSON.parse(sessionStorage.getItem('flightInfo')): '';
+    if (editForm) {
+      this.flightForm.patchValue({
+        departure: editForm.departure,
+        destination: editForm.destination,
+        departDate: editForm.departDate,
+        returnDate: editForm.returnDate,
+        travellers: editForm.travellers,
+        travelClass: editForm.travelClass
+      });
+    }
   }
-
+  checkAirports(event, field) {
+    if (this.flightForm.controls['departure'].value && this.flightForm.controls['destination'].value) {
+      if (this.flightForm.controls['departure'].value === this.flightForm.controls['destination'].value) {
+        if (field === 'departure') {
+          this.departureError = true;
+        } else {
+          this.destinationError = true;
+        }
+      } else {
+        this.departureError = false;
+        this.destinationError = false;
+      }
+    }
+  }
+  checkinput(event) {
+    if (Number(this.flightForm.controls['travellers'].value) < 1 || Number(this.flightForm.controls['travellers'].value) > 5) {
+      this.flightForm.controls['travellers'].value = '';
+      event.target.value = '';
+      this.travellersError = true;
+    } else {
+      this.travellersError = false;
+    }
+  }
   onSubmit() {
-    console.log(this.flightNames);
+    sessionStorage.setItem('flightInfo', JSON.stringify(this.flightForm.value));
+    this.router.navigate(['/flight-details']);
   }
 }

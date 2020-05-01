@@ -1,0 +1,35 @@
+fieldset {
+    border-radius: 8px;
+    margin-top: 15px;
+    input {
+    width: 100%;
+    border: none;
+    outline: 0;
+    }
+}
+div > fieldset {
+    width: 40%;
+    float: left;
+}
+div > fieldset:first-child {
+    margin-right: 15px;
+}
+button {
+    background-color: darkgreen;
+    padding: 15px;
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    margin: 18px 0;
+}
+button:disabled {
+    background-color: gray;
+}
+.error {
+    padding: 5px 5px 0;
+    color: red;
+    float: left;
+    width: 100%;
+}

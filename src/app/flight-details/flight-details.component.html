@@ -1,1 +1,12 @@
-<p>flight-details works!</p>
+<header>
+    <a (click)="navigateBack()"><img src="./../../assets/icons/backArrow.png" width="30" alt="back"/></a>
+    <div class="flightInfo">
+        <div>{{departure + ' - ' + destination}}</div>
+        <div>
+            <span>{{returnDate? departDate + ' - ' + returnDate: departDate}}</span>
+            <span>{{' | ' + currentFlight['travellers'] + ' Adult'}}</span>
+        </div>
+    </div>
+    <a (click)="editFlight()"><img src="./../../assets/icons/edit.png" width="30" alt="edit"/></a>
+</header>
+

@@ -2,44 +2,45 @@
     <form [formGroup]= "flightForm" (ngSubmit)="onSubmit()">
         <fieldset>
          <legend>Departure </legend>
-         <input list="departure" placeholder="Airport or City">
+         <input list="departure" (change)="checkAirports($event, 'departure')" placeholder="Airport or City" formControlName ="departure" required>
          <datalist id="departure">
            <option *ngFor="let flight of flightNames" [value]="'(' + flight.IATA_code + ') ' + flight.city_name">
          </datalist>
         </fieldset>
-
+        <div class="error" *ngIf="departureError">*Departure should be different than Destination</div>
         <fieldset>
             <legend>Destination </legend>
-            <input list="arrival" placeholder="Airport or City">   
+            <input list="arrival" (change)="checkAirports($event, 'destination')" placeholder="Airport or City" formControlName ="destination" required>   
             <datalist id="arrival">
               <option *ngFor="let flight of flightNames" [value]="'(' + flight.IATA_code + ') ' + flight.city_name">
             </datalist>
         </fieldset>
-
+        <div class="error" *ngIf="destinationError">*Destination should be different than Departure</div>
         <div>
             <fieldset>
                 <legend>Depart date </legend>
-                <input type="date">
+                <input type="date" formControlName ="departDate" required>
             </fieldset>
             <fieldset>
                 <legend>Return Date </legend>
-                <input type="date">
+                <input type="date" formControlName ="returnDate">
             </fieldset>
         </div>
 
         <div>
             <fieldset>
                 <legend>Travellers </legend>
-                <input type="number">
+                <input type="number" (keyup)="checkinput($event)" formControlName ="travellers" min="0" max="5" required>
             </fieldset>
             <fieldset>
                 <legend>Class </legend>
-                <input list="classes">   
+                <input list="classes"  formControlName ="travelClass" required>   
                 <datalist id="classes">
-                  <option *ngFor="let travelClass of classList" [value]="travelClass">
+                  <option *ngFor="let travel of travelclass" [value]="travel">
                 </datalist>
             </fieldset>
         </div>
-        <button type="submit">Search Flights</button>
+        <div class="error" *ngIf="travellersError">*Please enter number between 1 to 5 only</div>
+        <button type="submit" [disabled]="!flightForm.valid">Search Flights</button>
        </form>
 </div>

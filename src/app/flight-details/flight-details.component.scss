@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    background-color: steelblue;
+    color: #fff;
+    padding: 5px;
+    margin: 15px 0;
+    a {
+        justify-content: center;
+    }
+    .flightInfo {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
