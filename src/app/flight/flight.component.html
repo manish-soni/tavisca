@@ -1,1 +1,45 @@
-<p>flight works!</p>
+<div>
+    <form [formGroup]= "flightForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+         <legend>Departure </legend>
+         <input list="departure" placeholder="Airport or City">
+         <datalist id="departure">
+           <option *ngFor="let flight of flightNames" [value]="'(' + flight.IATA_code + ') ' + flight.city_name">
+         </datalist>
+        </fieldset>
+
+        <fieldset>
+            <legend>Destination </legend>
+            <input list="arrival" placeholder="Airport or City">   
+            <datalist id="arrival">
+              <option *ngFor="let flight of flightNames" [value]="'(' + flight.IATA_code + ') ' + flight.city_name">
+            </datalist>
+        </fieldset>
+
+        <div>
+            <fieldset>
+                <legend>Depart date </legend>
+                <input type="date">
+            </fieldset>
+            <fieldset>
+                <legend>Return Date </legend>
+                <input type="date">
+            </fieldset>
+        </div>
+
+        <div>
+            <fieldset>
+                <legend>Travellers </legend>
+                <input type="number">
+            </fieldset>
+            <fieldset>
+                <legend>Class </legend>
+                <input list="classes">   
+                <datalist id="classes">
+                  <option *ngFor="let travelClass of classList" [value]="travelClass">
+                </datalist>
+            </fieldset>
+        </div>
+        <button type="submit">Search Flights</button>
+       </form>
+</div>
