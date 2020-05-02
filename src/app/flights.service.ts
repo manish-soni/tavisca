@@ -13,6 +13,7 @@ export class FlightsService {
   }
   getAllFlight(flight) {
     // no use of flight data here but added in case we get API to retrieve data for actual search
-    return this.http.get('./assets/flightData.json');
+    const response = this.http.get('./assets/flightData.json');
+    return response;
   }
 }

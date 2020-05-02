@@ -25,6 +25,16 @@ header {
 .card-container:last-child {
     border-bottom: none;
 }
+.seats {
+    position: absolute;
+    top: -11px;
+    right: 6px;
+    width: 90px;
+    text-align: center;
+    background-color: darkgoldenrod;
+    padding: 2px;
+    border-radius: 7px;
+}
 .flight-details {
     display: flex;
     .flightTm {
@@ -61,6 +71,7 @@ header {
         padding: 5px;
         border-radius: 5px;
         margin-right: 6px;
+        position: relative;
     }
     .travel-class:last-child {
         margin-right: 0;

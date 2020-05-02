@@ -32,14 +32,17 @@
            <div class="travel-class">
                <div>{{'$' + flights.economy}}</div>
                <div>Basic economy</div>
+               <div class="seats" *ngIf="currentClass === 'economy'">{{flights.seats + ' Seats left'}}</div>
            </div>
            <div class="travel-class">
             <div>{{'$' + flights.main}}</div>
             <div>Main cabin</div>
+            <div class="seats" *ngIf="currentClass === 'main'">{{flights.seats + ' Seats left'}}</div>
            </div>
            <div class="travel-class">
             <div>{{'$' + flights.business}}</div>
             <div>Business class</div>
+            <div class="seats" *ngIf="currentClass === 'business'">{{flights.seats + ' Seats left'}}</div>
            </div>
        </div>
     </div>

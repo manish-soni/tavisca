@@ -1,1 +1,53 @@
-<p>filter works!</p>
+<header>
+    <a (click)="naviagateBack()"><img src="./../../assets/icons/backArrow.png" width="30" alt="back"/></a>
+    <div class="flightInfo">Filter By</div>
+</header>
+
+<form [formGroup]= "filterForm">
+    <div>
+    <div>Price range</div>
+    <div class="price-range">
+        <fieldset>
+            <legend>Minimum Pice </legend>
+            $<input type="number" min="0" formControlName ="minPrice">
+        </fieldset>
+        <fieldset>
+            <legend>Maximum Price </legend>
+            $<input type="number" min="0" formControlName ="maxPrice">
+        </fieldset>
+    </div>
+    <input class="slider" type="range" min="0" max="50" formControlName ="priceRange"/>
+   </div>
+
+   <div>
+    <div class="booking">Booking class</div>
+        <div class="check">
+        <div>
+            <input type="checkbox" formControlName ="economy" value="economy" id="economy"/>
+            <label for="economy">Economy class</label>
+        </div>
+        <div></div>
+        </div>
+
+        <div class="check">
+        <div>
+          <input type="checkbox" formControlName ="main" value="main" id="main"/>
+          <label for="main">Main Class</label>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="check">
+        <div>
+          <input type="checkbox" formControlName ="business" value="business" id="business"/>
+          <label for="business">Business Class</label>
+        </div>
+        <div></div>
+      </div>
+   </div>
+
+   <div class="btn-section">
+       <button (click)="reset()">Reset all</button>
+       <button (click)="submitFilter()">Apply</button>
+   </div>
+</form>

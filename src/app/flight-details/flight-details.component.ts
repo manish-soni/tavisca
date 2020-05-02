@@ -16,11 +16,11 @@ export class FlightDetailsComponent implements OnInit {
   public returnDate = '';
   private month = {0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'};
   public flightData = [];
+  public currentClass = '';
   constructor(private router: Router, private http: HttpClient, private flightServ: FlightsService) { }
 
   ngOnInit(): void {
     this.getUserInput();
-    this.sortMethod();
   }
   getUserInput() {
     this.currentFlight = JSON.parse(sessionStorage.getItem('flightInfo'));
@@ -31,28 +31,9 @@ export class FlightDetailsComponent implements OnInit {
       this.departDate = this.month[departDT.getMonth()] + ' ' + departDT.getDate();
       const returnDT = this.currentFlight['returnDate']? new Date(this.currentFlight['returnDate']): '';
       this.returnDate = returnDT? this.month[returnDT.getMonth()] + ' ' + returnDT.getDate() : '';
+      this.currentClass = this.currentFlight['travelClass'];
       this.getFlights(this.currentFlight);
     }
-  }
-  sortMethod() {
-   const sortMode = sessionStorage.getItem('sortMode');
-   if (sortMode === 'LTHPrice') {
-    this.flightData.sort(function (a, b) {
-      if (a['economy'] > b['economy']) return -1;
-      if (a['economy'] < b['economy']) return 1;
-      if (a['economy'] === b['economy']) return 0;
-    });
-   } else if (sortMode === 'HTLPrice') {
-
-   } else if (sortMode === 'LTHDuration') {
-
-   } else if (sortMode === 'HTLDuration') {
-
-   } else if (sortMode === 'ATZ') {
-     
-  } else if (sortMode === 'ZTA') {
-     
-  }
   }
   
   getFlights(currentFlight) {
@@ -67,12 +48,52 @@ export class FlightDetailsComponent implements OnInit {
     this.flightServ.getAllFlight(currentFlight).subscribe(data => {
       this.flightData = data['airports'];
       console.log(this.flightData);
+      this.sortMethod(this.currentFlight['travelClass']);
     })
+    
   }
+
+  sortMethod(travelClass) {
+    console.log(this.flightData);
+   const travelType = travelClass.toLowerCase();
+   const sortMode = (sessionStorage.getItem('sortMode'))? sessionStorage.getItem('sortMode'): '';
+   if (sortMode === 'LTHPrice') {
+    this.flightData.sort(function (a, b) {
+      return a[travelType] - b[travelType];
+    });
+   } else if (sortMode === 'HTLPrice') {
+    this.flightData.sort(function (a, b) {
+      return b[travelType] - a[travelType];
+    });
+   } else if (sortMode === 'LTHDuration') {
+    this.flightData.sort(function (a, b) {
+      return a.duration - b.duration;
+    });
+   } else if (sortMode === 'HTLDuration') {
+    this.flightData.sort(function (a, b) {
+      return b.duration - a.duration;
+    });
+   } else if (sortMode === 'ATZ') {
+    this.flightData.sort(function (a, b) {
+      if (a['flightName'] > b['flightName']) return -1;
+      if (a['flightName'] < b['flightName']) return 1;
+       return 0;
+    });
+  } else if (sortMode === 'ZTA') {
+    this.flightData.sort(function (a, b) {
+      if (a['flightName'] < b['flightName']) return -1;
+      if (a['flightName'] > b['flightName']) return 1;
+       return 0;
+    });     
+  }
+  }
+
   editFlight() {
+    sessionStorage.removeItem('sortMode')
     this.router.navigate(['/flight']);
   }
   navigateBack() {
+     sessionStorage.removeItem('sortMode');
     sessionStorage.removeItem('flightInfo');
     this.router.navigate(['/flight']);
   }

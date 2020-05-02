@@ -15,7 +15,7 @@ public flightForm;
 public departureError: boolean = false;
 public destinationError: boolean = false;
 public travellersError: boolean = false;
-public travelclass = ['Business', 'Economy', 'First'];
+public travelclass = ['business', 'economy', 'main'];
   constructor(private flightServ: FlightsService, private router: Router) { }
 
   ngOnInit(): void {
