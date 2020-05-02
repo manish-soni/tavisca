@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-
-import { Observable, throwError } from 'rxjs';
-import { FlightsService } from './../flights.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { FlightsService } from './../flights.service';
+
 @Component({
   selector: 'app-flight',
   templateUrl: './flight.component.html',

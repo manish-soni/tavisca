@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HotelsComponent } from './hotels/hotels.component';
 import { TrainsComponent } from './trains/trains.component';
 import { BusComponent } from './bus/bus.component';
+import { SortPageComponent } from './sort-page/sort-page.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { BusComponent } from './bus/bus.component';
     FlightDetailsComponent,
     HotelsComponent,
     TrainsComponent,
-    BusComponent
+    BusComponent,
+    SortPageComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

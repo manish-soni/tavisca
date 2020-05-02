@@ -1,6 +1,6 @@
 header {
     display: flex;
-    background-color: steelblue;
+    background-color: dodgerblue;
     color: #fff;
     padding: 5px;
     margin: 15px 0;
@@ -11,5 +11,80 @@ header {
         text-align: center;
         justify-content: center;
         width: 100%;
+    }
+}
+
+.card-container {
+    border-bottom: 1px solid gray;
+    padding: 1px 15px 25px;
+    margin-bottom: 15px;
+    -moz-box-shadow: inset 0px 0 4px 1px #888;
+    -webkit-box-shadow: inset 0px 0 4px 1px #888;
+    box-shadow: inset 0px 0 4px 1px #888;
+}
+.card-container:last-child {
+    border-bottom: none;
+}
+.flight-details {
+    display: flex;
+    .flightTm {
+       width: 30%;
+      justify-content: center;
+    }
+    .flightTm:last-child {
+        text-align: right;
+    }
+    .flightTm:nth-child(2) {
+        text-align: center;
+        width: 40%;
+        img {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+}
+.airline-name {
+    margin: 15px 0;
+    img {
+        width: 35px;
+        margin-right: 5px;
+    }
+}
+.flight-prices {
+    display: flex;
+    margin-top: 20px;
+    .travel-class {
+        justify-content: center;
+        width:30%;
+        background-color: dodgerblue;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        margin-right: 6px;
+    }
+    .travel-class:last-child {
+        margin-right: 0;
+    }
+}
+.sort-filter {
+    position: sticky;
+    bottom: 4%;
+    left:23px;
+    background-color: #fff;
+    color: dodgerblue;
+    font-size: 19px;
+    width: 180px;
+    text-align: center;
+    box-shadow: inset 0px 0 4px 1px #888;
+    -moz-box-shadow: inset 0px 0 4px 1px #888;
+    -webkit-box-shadow: inset 0px 0 4px 1px #888;
+    border-radius: 5px;
+    padding: 5px;
+    a:first-child {
+        padding-right: 10px;
+        border-right: 1px solid gray;
+    }
+    a:nth-child(2) {
+        margin-left: 10px;
     }
 }

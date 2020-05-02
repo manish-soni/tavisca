@@ -1,0 +1,33 @@
+header {
+    display: flex;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 5px;
+    margin: 15px 0;
+    a {
+        justify-content: center;
+    }
+    .flightInfo {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 30px;
+    }
+}
+ .radio-opions {
+    padding: 10px;
+    font-size: 16px;
+ }
+ button {
+    background-color: darkgreen;
+    padding: 15px;
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    margin: 18px 0;
+}
+button:disabled {
+    background-color: gray;
+}

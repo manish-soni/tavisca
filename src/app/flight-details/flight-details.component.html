@@ -10,3 +10,42 @@
     <a (click)="editFlight()"><img src="./../../assets/icons/edit.png" width="30" alt="edit"/></a>
 </header>
 
+<main>
+    <div class="card-container" *ngFor="let flights of flightData">
+       <div class="airline-name"><img src="{{'./../../assets/icons/' + flights.flightName + '.png'}}" alt="icon"/>{{flights.flightName}}</div>
+       <div class="flight-details">
+           <div class="flightTm">
+               <div>{{flights.startTime}}</div>
+               <div>{{departure}}</div>
+           </div>
+           <div class="flightTm">
+               <div>{{flights.flightTime}}</div>
+               <div><img src="./../../assets/icons/line-icon.png" alt="line"/></div>
+               <div *ngIf="flights.stops>0">{{flights.stops + 'Stops (' + flights.stopLocations + ')'}}</div>
+           </div>
+           <div class="flightTm">
+                <div>{{flights.endTime}}</div>
+                <div>{{destination}}</div>
+           </div>
+       </div>
+       <div class="flight-prices">
+           <div class="travel-class">
+               <div>{{'$' + flights.economy}}</div>
+               <div>Basic economy</div>
+           </div>
+           <div class="travel-class">
+            <div>{{'$' + flights.main}}</div>
+            <div>Main cabin</div>
+           </div>
+           <div class="travel-class">
+            <div>{{'$' + flights.business}}</div>
+            <div>Business class</div>
+           </div>
+       </div>
+    </div>
+</main>
+
+<div class="sort-filter">
+    <a (click)="toSortPage()">Sort by</a>
+    <a (click)="toFilters()">Filters</a>
+</div>

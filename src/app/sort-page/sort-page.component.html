@@ -1,0 +1,32 @@
+<header>
+    <a (click)="navigateBack()"><img src="./../../assets/icons/backArrow.png" width="30" alt="back"/></a>
+    <div class="flightInfo">Sort By</div>
+</header>
+
+<form [formGroup]="sortForm" (ngSubmit)="getSortMode()">
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="LTHPrice" id="LTHPrice" required/>
+        <label for="LTHPrice">Price (Lowest to Highest)</label>
+    </div>
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="HTLPrice" id="HTLPrice" required/>
+        <label for="HTLPrice">Price (Highest to Lowest)</label>
+    </div>
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="LTHDuration" id="LTHDuration" required/>
+        <label for="LTHDuration">Duration (Lowest to Highest)</label>
+    </div>
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="HTLDuration" id="HTLDuration" required/>
+        <label for="HTLDuration">Duration (Highest to Lowest)</label>
+    </div>
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="ATZ" id="ATZ" required/>
+        <label for="ATZ">Airlines (A To Z)</label>
+    </div>
+    <div class="radio-opions">
+        <input type="radio" name="sortOption" formControlName="sortOption" value="ZTA" id="ZTA" required/>
+        <label for="ZTA">Airlines (Z To A)</label>
+    </div>
+    <button type="submit" [disabled]="!sortForm.valid">Done</button>
+</form>
