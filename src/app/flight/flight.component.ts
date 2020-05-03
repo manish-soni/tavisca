@@ -43,7 +43,14 @@ public travelclass = ['business', 'economy', 'main'];
         travelClass: editForm.travelClass
       });
     }
+    this.removeSessionData();
   }
+  // removed filters and sort modes
+  removeSessionData() {
+    sessionStorage.getItem('filterOption')? sessionStorage.removeItem('filterOption'): '';
+    sessionStorage.getItem('sortMode')? sessionStorage.removeItem('sortMode'): '';
+  }
+// to check airport names are not same
   checkAirports(event, field) {
     if (this.flightForm.controls['departure'].value && this.flightForm.controls['destination'].value) {
       if (this.flightForm.controls['departure'].value === this.flightForm.controls['destination'].value) {
@@ -58,6 +65,7 @@ public travelclass = ['business', 'economy', 'main'];
       }
     }
   }
+  // to check the number of travellers are not greater than 5
   checkinput(event) {
     if (Number(this.flightForm.controls['travellers'].value) < 1 || Number(this.flightForm.controls['travellers'].value) > 5) {
       this.flightForm.controls['travellers'].value = '';

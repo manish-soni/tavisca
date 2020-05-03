@@ -14,6 +14,7 @@ export class SortPageComponent implements OnInit {
     this.sortForm = new FormGroup({
       sortOption: new FormControl(''),
   });
+  sessionStorage.removeItem('sortMode');
 }
 getSortMode() {
   sessionStorage.setItem('sortMode',this.sortForm.controls['sortOption'].value);

@@ -17,6 +17,7 @@ export class FlightDetailsComponent implements OnInit {
   private month = {0: 'Jan', 1: 'Feb', 2: 'Mar', 3: 'Apr', 4: 'May', 5: 'Jun', 6: 'Jul', 7: 'Aug', 8: 'Sep', 9: 'Oct', 10: 'Nov', 11: 'Dec'};
   public flightData = [];
   public currentClass = '';
+  private originalFlightData = [];
   constructor(private router: Router, private http: HttpClient, private flightServ: FlightsService) { }
 
   ngOnInit(): void {
@@ -48,11 +49,32 @@ export class FlightDetailsComponent implements OnInit {
     this.flightServ.getAllFlight(currentFlight).subscribe(data => {
       this.flightData = data['airports'];
       console.log(this.flightData);
-      this.sortMethod(this.currentFlight['travelClass']);
+      // stored backup of data to apply filters
+      this.originalFlightData = this.flightData;
+      if (sessionStorage.getItem('sortMode')) {
+        this.sortMethod(this.currentFlight['travelClass'])
+      }
+      if (sessionStorage.getItem('filterOption')) {
+        this.filterOnCurrentData();
+      }
     })
     
   }
+  filterOnCurrentData() {
+    const filterOpt = JSON.parse(sessionStorage.getItem('filterOption'))? JSON.parse(sessionStorage.getItem('filterOption')) : '';
+    console.log(filterOpt)
 
+    // {minPrice: 450, maxPrice: 550, economy: true, main: true, …}
+    // need to modify the function based on min and max value 
+
+    // this.flightData = this.flightData.filter(function(item) {
+    //   for (var key in filterOpt) {
+    //     if (item[key] === undefined || item[key] != filterOpt[key])
+    //       return false;
+    //   }
+    //   return true;
+    // });
+  }
   sortMethod(travelClass) {
     console.log(this.flightData);
    const travelType = travelClass.toLowerCase();
