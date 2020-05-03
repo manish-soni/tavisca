@@ -61,19 +61,52 @@ export class FlightDetailsComponent implements OnInit {
     
   }
   filterOnCurrentData() {
+    const finalFilteredData = []
     const filterOpt = JSON.parse(sessionStorage.getItem('filterOption'))? JSON.parse(sessionStorage.getItem('filterOption')) : '';
     console.log(filterOpt)
 
-    // {minPrice: 450, maxPrice: 550, economy: true, main: true, …}
-    // need to modify the function based on min and max value 
+    for (let i =0; i< this.flightData.length; i++) {
+     for (let j = 0; j< filterOpt['checkVals'].length; j++) {
+      if (this.flightData[i][filterOpt['checkVals'][j]] !== '') {
+       if (filterOpt['minPrice'] && filterOpt['maxPrice']) {
+        if (this.flightData[i][filterOpt['checkVals'][j]] >= filterOpt['minPrice'] && this.flightData[i][filterOpt['checkVals'][j]] <= filterOpt['maxPrice']) {
+          finalFilteredData.push(this.flightData[i]);
+          this.flightData.splice(i, 1);
+        }
+       } else if (filterOpt['minPrice']) {
+          if (this.flightData[i][filterOpt['checkVals'][j]] >= filterOpt['minPrice']) {
+            finalFilteredData.push(this.flightData[i]);
+            this.flightData.splice(i, 1);
+          }
+        } else if (filterOpt['maxPrice']) {
+          if (this.flightData[i][filterOpt['checkVals'][j]] <= filterOpt['maxPrice']) {
+            finalFilteredData.push(this.flightData[i]);
+            this.flightData.splice(i, 1);
+        }
+      }  else {
+        finalFilteredData.push(this.flightData[i]);
+        this.flightData.splice(i, 1);
+      }
+     }
+  }
+  if (filterOpt['checkVals'].length === 0) {
+    if (filterOpt['minPrice'] && filterOpt['maxPrice']) {
+      if (this.flightData[i][this.currentClass] >= filterOpt['minPrice'] && this.flightData[i][this.currentClass] <= filterOpt['maxPrice']) {
+        finalFilteredData.push(this.flightData[i]);
+      }
+     }else if (filterOpt['minPrice']) {
+      if (this.flightData[i][this.currentClass] >= filterOpt['minPrice']) {
+        finalFilteredData.push(this.flightData[i]);
+      }
+    } else if (filterOpt['maxPrice']) {
+      if (this.flightData[i][this.currentClass] >= filterOpt['maxPrice']) {
+        finalFilteredData.push(this.flightData[i]);
+    }
+  }
+  }
+}
+  this.flightData = finalFilteredData;
 
-    // this.flightData = this.flightData.filter(function(item) {
-    //   for (var key in filterOpt) {
-    //     if (item[key] === undefined || item[key] != filterOpt[key])
-    //       return false;
-    //   }
-    //   return true;
-    // });
   }
   sortMethod(travelClass) {
     console.log(this.flightData);

@@ -27,11 +27,15 @@ public filterForm;
   }
   submitFilter() {
     // iterating object to get only the values which need to be filtered
-    const finalFilter = {}
+    const finalFilter = {
+      'checkVals': []
+    }
     for (let key of Object.keys(this.filterForm.value)) {
       let userResp = this.filterForm.value[key];
-      if (userResp !== '') { 
+      if (userResp !== '' && (key === 'minPrice' || key === 'maxPrice')) { 
         finalFilter[key] = userResp;
+      } else if (userResp !== '') {
+        finalFilter['checkVals'].push(key);
       }
     }
     console.log(finalFilter)
