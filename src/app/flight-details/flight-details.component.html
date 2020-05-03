@@ -11,6 +11,7 @@
 </header>
 
 <main>
+    <div class="no-data" *ngIf="flightData.length === 0">Please select proper filter to get data</div>
     <div class="card-container" *ngFor="let flights of flightData">
        <div class="airline-name"><img src="{{'./../../assets/icons/' + flights.flightName + '.png'}}" alt="icon"/>{{flights.flightName}}</div>
        <div class="flight-details">
