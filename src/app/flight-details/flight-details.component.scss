@@ -6,6 +6,7 @@ header {
     margin: 15px 0;
     a {
         justify-content: center;
+        cursor: pointer;
     }
     .flightInfo {
         text-align: center;
@@ -94,8 +95,10 @@ header {
     a:first-child {
         padding-right: 10px;
         border-right: 1px solid gray;
+        cursor: pointer;
     }
     a:nth-child(2) {
         margin-left: 10px;
+        cursor: pointer;
     }
 }

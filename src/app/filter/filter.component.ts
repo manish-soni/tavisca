@@ -23,11 +23,19 @@ public filterForm;
     this.router.navigate(['/flight-details']);
   }
   reset() {
-    this.filterForm.reset;
+    this.filterForm.reset();
   }
   submitFilter() {
-    console.log(this.filterForm.value)
-    sessionStorage.setItem('filterOption', JSON.stringify(this.filterForm.value));
+    // iterating object to get only the values which need to be filtered
+    const finalFilter = {}
+    for (let key of Object.keys(this.filterForm.value)) {
+      let userResp = this.filterForm.value[key];
+      if (userResp !== '') { 
+        finalFilter[key] = userResp;
+      }
+    }
+    console.log(finalFilter)
+    sessionStorage.setItem('filterOption', JSON.stringify(finalFilter));
     this.router.navigate(['/flight-details']);
   }
 }
